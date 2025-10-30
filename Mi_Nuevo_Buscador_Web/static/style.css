@@ -1,0 +1,413 @@
+/* ===================================================================
+   Archivo: static/style.css
+   Versión: 10.0 (Rediseño "Dashboard Moderno")
+   Descripción: Un rediseño completo enfocado en la claridad,
+                distinción de áreas y una estética de "ventana".
+=================================================================== */
+
+/* --- 1. Paleta de Colores y Variables Globales --- */
+:root {
+    /* Paleta Corporativa */
+    --color-azul: #004A99;
+    --color-rojo: #E30613;
+    --color-rojo-hover: #C0000A;
+    --color-blanco: #FFFFFF;
+    
+    /* Acento */
+    --color-amarillo: #FFC400;
+
+    /* Neutros (¡NUEVO!) */
+    --color-fondo-app: #F4F7F9;       /* Fondo gris claro para el contenido */
+    --color-fondo-sidebar: #FFFFFF; /* Fondo blanco para la barra lateral */
+    --color-fondo-tabla: #FFFFFF;     /* Fondo blanco para la tabla */
+    
+    --color-texto-primario: #2E3A48;
+    --color-texto-secundario: #6B7789;
+    --color-borde: #DEE2E6;
+
+    /* UI */
+    --font-principal: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --sombra-ventana: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra para la "ventana" */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --radio-esquinas: 12px; /* Esquinas más suaves */
+    --radio-inputs: 8px;
+}
+
+/* --- 2. Estructura Principal y Layout --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    font-family: var(--font-principal);
+    color: var(--color-texto-primario);
+    background-color: var(--color-fondo-app); /* <-- Fondo gris de la app */
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- 3. Barra Lateral (Sidebar) --- */
+.sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    background-color: var(--color-fondo-sidebar); /* <-- Fondo blanco */
+    border-right: 1px solid var(--color-borde); /* <-- Borde sutil */
+    padding: 1.5rem;
+    z-index: 10;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    display: flex; /* <-- NUEVO: Para organizar mejor el contenido */
+    flex-direction: column;
+}
+
+/* --- 4. Contenido Principal (Content) --- */
+.content {
+    flex-grow: 1;
+    padding: 2rem;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* <-- CLAVE: para que la tabla crezca */
+    overflow: hidden; /* <-- CLAVE: para contener la "ventana" */
+}
+
+/* --- 5. Tipografía y Encabezados --- */
+h1, h2, h3 {
+    color: var(--color-azul);
+    font-weight: 600;
+}
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* NUEVO: Encabezados de sección de la barra lateral */
+.sidebar h3 {
+    font-size: 1.1rem;
+    color: var(--color-texto-primario);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+.sidebar h3:first-of-type {
+    margin-top: 0;
+}
+
+/* --- 6. Controles de la Barra Lateral (Inputs, Botones) --- */
+.sidebar input[type="file"],
+.sidebar select,
+.sidebar input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-inputs);
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: var(--color-blanco);
+}
+
+/* Acento amarillo al enfocar */
+.sidebar input:focus,
+.sidebar select:focus {
+    outline: none;
+    border-color: var(--color-amarillo);
+    box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.4);
+}
+
+/* Estilo general de botones */
+button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--radio-inputs);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Botón de Añadir Filtro (Acción principal) */
+#btn-add-filter {
+    width: 100%;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+}
+#btn-add-filter:hover {
+    background-color: var(--color-rojo-hover);
+    box-shadow: var(--sombra-suave);
+}
+
+/* Botón de Limpiar Filtros (Acción secundaria) */
+#btn-clear-filters {
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-rojo);
+    border: 2px solid var(--color-rojo);
+}
+#btn-clear-filters:hover {
+    background-color: rgba(227, 6, 19, 0.05);
+}
+
+/* Selector de Idioma (Más sutil) */
+.lang-selector {
+    display: flex;
+    width: 100%;
+    background-color: var(--color-fondo-app);
+    border-radius: var(--radio-inputs);
+    padding: 4px;
+    margin-bottom: 1rem;
+}
+.lang-button {
+    width: 50%;
+    padding: 0.5rem;
+    border: none;
+    background-color: transparent;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.lang-button.active {
+    background-color: var(--color-blanco);
+    color: var(--color-azul);
+    box-shadow: var(--sombra-suave);
+}
+
+/* Lista de Filtros Activos (Más limpia) */
+#active-filters-list {
+    background-color: var(--color-fondo-app);
+    border: 1px dashed var(--color-borde);
+    border-radius: var(--radio-inputs);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+/* ... (reglas de .filtro-item no necesitan cambiar) ... */
+
+/* Botones de Check/Uncheck (Estilo "Chip" o "Píldora") */
+.column-toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.btn-small-link {
+    background-color: var(--color-fondo-app);
+    border: 1px solid var(--color-borde);
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: var(--color-texto-secundario);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.btn-small-link:hover {
+    background-color: var(--color-blanco);
+    border-color: var(--color-azul);
+    color: var(--color-azul);
+}
+#btn-uncheck-all-cols {
+    color: var(--color-rojo);
+}
+#btn-uncheck-all-cols:hover {
+    border-color: var(--color-rojo);
+    color: var(--color-rojo);
+}
+
+/* Contenedor de Checkboxes de Columna */
+#column-selector-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-inputs);
+    padding: 1rem;
+    background-color: var(--color-fondo-app);
+}
+/* ... (reglas de .column-selector-item no necesitan cambiar) ... */
+
+/* --- 7. Encabezado del Contenido (Más Ordenado) --- */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Botón de Descarga (Acción Primaria) */
+#btn-download-excel {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    padding: 0.75rem 1.5rem;
+}
+#btn-download-excel:hover {
+    background-color: #003366;
+    box-shadow: var(--sombra-suave);
+}
+
+/* Botón de Pantalla Completa (Icono) */
+.icon-button {
+    background-color: var(--color-blanco);
+    color: var(--color-texto-secundario);
+    border: 1px solid var(--color-borde);
+    width: 44px;
+    height: 44px;
+    padding: 0.5rem;
+}
+.icon-button svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+.icon-button:hover {
+    background-color: #f8f9fa;
+    color: var(--color-azul);
+}
+
+/* --- 8. Cabecera de la Tabla (Lupa y Título "Resultados") --- */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+.table-header h2 { /* Título "Resultados" */
+    color: var(--color-texto-primario);
+}
+
+/* Lupa de Búsqueda */
+.search-wrapper {
+    position: relative;
+}
+.search-wrapper .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--color-texto-secundario);
+}
+#input-search-table {
+    padding: 0.75rem 0.75rem 0.75rem 2.75rem; /* Más espacio para el icono */
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-inputs);
+    font-size: 0.95rem;
+    width: 300px;
+    background-color: var(--color-blanco);
+}
+#input-search-table:focus {
+    outline: none;
+    border-color: var(--color-amarillo);
+    box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.4);
+}
+
+/* --- 9. "VENTANA" DE RESULTADOS (LA TABLA) --- */
+#results-table {
+    flex-grow: 1; /* <-- CLAVE: Ocupa el espacio restante */
+    overflow: auto; /* <-- CLAVE: Genera scrolls H y V */
+    
+    background-color: var(--color-fondo-tabla);
+    border-radius: var(--radio-esquinas);
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-ventana); /* <-- Sombra de "ventana" */
+    
+    /* Para que los encabezados sticky funcionen bien */
+    overflow-clip-margin: 0; 
+}
+
+/* Mensaje de "Cargue un archivo..." */
+#results-table p {
+    padding: 3rem;
+    text-align: center;
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+}
+
+/* --- 10. Estilos de la Tabla (Look Excel Moderno) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.85rem 1rem; /* Padding uniforme */
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--color-borde);
+    border-right: 1px solid var(--color-borde);
+}
+
+/* Encabezados TH (Manteniendo colores corporativos) */
+th {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-rojo);
+    
+    position: sticky; /* <-- ENCABEZADOS FIJOS */
+    top: 0;
+    z-index: 1;
+    
+    /* Separador sutil */
+    border-right: 1px solid rgba(255, 255, 255, 0.2); 
+}
+
+/* Quitar bordes derechos dobles */
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+/* Iconos de Ordenamiento (Color Amarillo) */
+.sort-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5; /* Más visibles por defecto */
+}
+th.sorted-asc .sort-icon.asc,
+th.sorted-desc .sort-icon.desc {
+    opacity: 1;
+    color: var(--color-amarillo);
+}
+
+/* Filas (Tbody) */
+tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 74, 153, 0.02); /* "Zebra" azul muy sutil */
+}
+
+/* Acento amarillo al pasar el mouse */
+tbody tr:hover {
+    background-color: #FFFBEB; 
+}
+
+/* --- 11. Modo Pantalla Completa --- */
+body.fullscreen-mode .sidebar {
+    margin-left: -320px;
+}
+/* NUEVO: Icono cambia para indicar estado */
+body.fullscreen-mode .icon-button svg {
+    transform: rotate(180deg);
+    color: var(--color-rojo);
+}

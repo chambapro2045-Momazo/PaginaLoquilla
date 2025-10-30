@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ get_text(lang, 'title') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    
+    <aside class="sidebar">
+        <div class="lang-selector">
+            <button id="btn-lang-es" class="lang-button {% if lang == 'es' %}active{% endif %}" data-lang="es">Español</button>
+            <button id="btn-lang-en" class="lang-button {% if lang == 'en' %}active{% endif %}" data-lang="en">English</button>
+        </div>
+
+        <h2>{{ get_text(lang, 'control_area') }}</h2>
+        
+        <h3>1. {{ get_text(lang, 'uploader_label') }}</h3>
+        <input type="file" id="file-uploader" accept=".xlsx">
+        
+        <h3>2. {{ get_text(lang, 'add_filter_header') }}</h3>
+        <select id="select-columna">
+            <option value="">{{ get_text(lang, 'column_select') }}</option>
+        </select>
+        <input type="text" id="input-valor" placeholder="{{ get_text(lang, 'search_text') }}">
+        <button id="btn-add-filter">{{ get_text(lang, 'add_filter_button') }}</button>
+        
+        <h3>3. {{ get_text(lang, 'active_filters_header') }}</h3>
+        <div id="active-filters-list"></div>
+        <button id="btn-clear-filters">{{ get_text(lang, 'clear_all_button') }}</button>
+
+        <h3>4. Columnas Visibles</h3>
+        
+                      <div class="column-toggle-buttons">
+            <button id="btn-check-all-cols" class="btn-small-link">{{ get_text(lang, 'check_all_button') }}</button>
+            <button id="btn-uncheck-all-cols" class="btn-small-link">{{ get_text(lang, 'uncheck_all_button') }}</button>
+        </div>
+               <div id="column-selector-wrapper">
+              <p>{{ get_text(lang, 'info_upload') }}</p> 
+        </div>
+
+    </aside>
+
+    <main class="content">
+        <div class="content-header">
+            <h1>{{ get_text(lang, 'title') }}</h1>
+            <div class="header-controls">
+                <button id="btn-fullscreen" class="icon-button" title="Pantalla Completa">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5" />
+                    </svg>
+                </button>
+                <button id="btn-download-excel">{{ get_text(lang, 'download_button').replace('JSON', 'Excel') }}</button>
+            </div>
+        </div>
+        <div class="table-header">
+            <h2 id="results-header">{{ get_text(lang, 'results_header').split('(')[0] }}</h2>
+            <div class="search-wrapper">
+                <input type="text" id="input-search-table" placeholder="{{ get_text(lang, 'search_text') }}...">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+        </div>
+        <div id="results-table"></div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script> 
+</body>
+</html>
