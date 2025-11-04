@@ -26,7 +26,24 @@ LANGUAGES = {
         "error_missing_cols": "Error: No se pudieron encontrar las columnas requeridas.",
         "warning_missing_cols": "El script esperaba: **{columnas}**",
         "info_check_excel": "Asegúrese de que su Excel tenga columnas que se parezcan a 'Emisor', 'Código Factura', 'Monto', y 'Fecha'.",
-        "info_headers_found": "Encabezados encontrados en el archivo (antes de normalizar):"
+        "info_headers_found": "Encabezados encontrados en el archivo (antes de normalizar):",
+        "visible_columns_header": "Columnas visibles",
+        "check_all_button": "Marcar todas",
+        "uncheck_all_button": "Desmarcar todas",
+        "summary_header": "Resumen de la Búsqueda",
+        "summary_total_invoices": "Total de Facturas",
+        "summary_total_amount": "Monto Total Filtrado",
+        "summary_avg_amount": "Monto Promedio",
+        "view_type_header": "Tipo de Vista",
+        "view_type_detailed": "Vista Detallada",
+        "view_type_grouped": "Vista Agrupada",
+        "group_by_select": "Agrupar por:",
+        "group_by_placeholder": "Seleccione una columna para agrupar",
+        "group_total_amount": "Monto Total",
+        "group_avg_amount": "Monto Promedio",
+        "group_min_amount": "Monto Mínimo",
+        "group_max_amount": "Monto Máximo",
+        "group_invoice_count": "Conteo de Facturas"
     },
     "en": {
         "title": "Dynamic Invoice Search",
@@ -52,7 +69,24 @@ LANGUAGES = {
         "error_missing_cols": "Error: Could not find the required columns.",
         "warning_missing_cols": "The script expected: **{columnas}**",
         "info_check_excel": "Please ensure your Excel file has columns similar to 'Vendor Name', 'Invoice #', 'Total', and 'Invoice Date'.",
-        "info_headers_found": "Headers found in file (before normalization):"
+        "info_headers_found": "Headers found in file (before normalization):",
+        "visible_columns_header": "Visible Columns",
+        "check_all_button": "Check All",
+        "uncheck_all_button": "Uncheck All",
+        "summary_header": "Search Summary",
+        "summary_total_invoices": "Total Invoices",
+        "summary_total_amount": "Total Amount Filtered",
+        "summary_avg_amount": "Average Amount",
+        "view_type_header": "View Type",
+        "view_type_detailed": "Detailed View",
+        "view_type_grouped": "Grouped View",
+        "group_by_select": "Group by:",
+        "group_by_placeholder": "Select a column to group by",
+        "group_total_amount": "Total Amount",
+        "group_avg_amount": "Average Amount",
+        "group_min_amount": "Minimum Amount",
+        "group_max_amount": "Maximum Amount",
+        "group_invoice_count": "Invoice Count"
     }
 }
 
